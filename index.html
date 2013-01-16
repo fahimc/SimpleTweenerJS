@@ -12,9 +12,12 @@
 
 				tween(box, 1, {
 					left : "200px",top:"200px",opacity:0
-				});
+				},complete);
 			}
-
+			function complete()
+			{
+				alert("done");
+			}
 		</script>
 	</head>
 	<body onload="onLoad()">

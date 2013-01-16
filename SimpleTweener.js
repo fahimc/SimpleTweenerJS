@@ -8,9 +8,11 @@ var tween = function(obj, duration, props, callback) {
 				
 				this.onFrame = function(obj, duration, props, callback)
 				{
+					var doneCount=0;
+					var children=0;
 					for (var name in props) {	
 						var newProp;
-						
+						children++;
 						if(props[name].value==null)
 						{
 							var suffix = (String(props[name]).indexOf("px")>=0);
@@ -54,11 +56,18 @@ var tween = function(obj, duration, props, callback) {
 							
 							obj.style[name] = props[name].currentProp + (props[name].suffix?"px":"");
 							if(name=="opacity")this.setOpacity(obj,props[name].currentProp);
-						}else{
-							window.clearInterval(window.tweenTimer);
+						}else if(!props[name].complete){
+							props[name].complete=true;
+							doneCount++;
+							
 						}
 	
 					}
+					if(doneCount>=children)
+						{
+							window.clearInterval(window.tweenTimer);
+							if(callback)callback();
+						}
 				}
 				this.setOpacity=function(obj,value)
 				{
