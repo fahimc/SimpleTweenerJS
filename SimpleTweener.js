@@ -3,7 +3,7 @@ var tween = function(obj, duration, props, callback) {
 				var par = this;
 				var handler= function(){par.onFrame(obj, duration, props, callback);};
 				
-				
+				if(window.tweenTimer)window.clearInterval(window.tweenTimer);
 				window.tweenTimer = setInterval(handler,35);
 				
 				this.onFrame = function(obj, duration, props, callback)
@@ -39,7 +39,7 @@ var tween = function(obj, duration, props, callback) {
 							{
 								props[name].negative = Number(newProp) < Number(props[name].currentProp)  ? true : false;
 							
-								props[name].subtraction = Math.abs(Number(props[name].currentProp) - Number(newProp)) / framerate;
+								props[name].subtraction = Math.abs(Number(props[name].currentProp) - Number(newProp)) / ( (duration * 1000) /framerate);
 							}
 						
 						if (props[name].negative && Number(props[name].currentProp) >= Number(newProp) || !props[name].negative && Number(props[name].currentProp) <= Number(newProp)) {
