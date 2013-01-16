@@ -57,6 +57,7 @@ var tween = function(obj, duration, props, callback) {
 							obj.style[name] = props[name].currentProp + (props[name].suffix?"px":"");
 							if(name=="opacity")this.setOpacity(obj,props[name].currentProp);
 						}else if(!props[name].complete){
+							obj.style[name] = newProp + (props[name].suffix?"px":"");
 							props[name].complete=true;
 							doneCount++;
 							
