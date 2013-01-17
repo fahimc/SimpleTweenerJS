@@ -42,7 +42,7 @@ var tween = function(obj, duration, props, callback) {
 								props[name].subtraction = Math.abs(Number(props[name].currentProp) - Number(newProp)) / ( (duration * 1000) /framerate);
 							}
 						
-						if (props[name].negative && Number(props[name].currentProp) >= Number(newProp) || !props[name].negative && Number(props[name].currentProp) <= Number(newProp)) {
+						if (props[name].negative && Number(props[name].currentProp)- Number(props[name].subtraction) >= Number(newProp) || !props[name].negative && Number(props[name].currentProp) + Number(props[name].subtraction) <= Number(newProp)) {
 							
 							
 							if(props[name].negative)
