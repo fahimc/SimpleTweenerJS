@@ -18,7 +18,7 @@ var tween = function(obj, duration, props, callback) {
 							var suffix = (String(props[name]).indexOf("px")>=0);
 							newProp = String(props[name]).replace("px", "");
 							props[name]={value:newProp,negative:null,complete:false,subtraction:null,currentProp:null,suffix:suffix};
-							props[name].currentProp = obj.style[name].replace("px", "");
+							props[name].currentProp = obj.style[name]?obj.style[name].replace("px", ""):0;
 						
 						}else{
 							newProp = props[name].value;
@@ -72,9 +72,9 @@ var tween = function(obj, duration, props, callback) {
 				}
 				this.setOpacity=function(obj,value)
 				{
-					obj.style['-ms-filter']="progid:DXImageTransform.Microsoft.Alpha(Opacity="+(value*100)+")";
-					obj.style['filter']=value;
-					obj.style['-moz-opacity']=value;
-					obj.style['-khtml-opacity']=value;
+					if(obj.style['-ms-filter'])obj.style['-ms-filter']="progid:DXImageTransform.Microsoft.Alpha(Opacity="+(value*100)+")";
+					if(obj.style['filter'])obj.style['filter']=value;
+					if(obj.style['-moz-opacity'])obj.style['-moz-opacity']=value;
+					if(obj.style['-khtml-opacity'])obj.style['-khtml-opacity']=value;
 				}
 			}
