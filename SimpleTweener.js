@@ -26,11 +26,11 @@ var tween = function(obj, duration, props, callback) {
 							
 						if ( props[name].currentProp == null || props[name].currentProp == "")
 						{
-							if(name=="opacity")
+							if(!obj.style[name])
 							{
-								props[name].currentProp = 1;
+								props[name].currentProp = (name=="opacity")?1: 0;
 							}else{
-								props[name].currentProp = 0;
+								props[name].currentProp = obj.style[name].replace(/\D/g,'');
 							}
 						}
 									
