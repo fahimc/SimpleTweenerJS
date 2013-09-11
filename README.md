@@ -16,7 +16,7 @@ call tween(object,duration,{properties},callback);
 
     var box = document.getElementById('box');
 
-    tween(box, 1, {left : "200px",top:"200px",opacity:0},complete);
+    tween.to(box, 1, {left : "200px",top:"200px",opacity:0},complete);
 		
 		function complete()
 		{
