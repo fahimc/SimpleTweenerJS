@@ -31,6 +31,12 @@ var tween = {
 			window.tweenTimer=null;
 		}
 	},
+	killAll:function()
+	{
+		clearInterval(window.tweenTimer);
+			window.tweenTimer=null;
+			this.tweens=[];
+	},
 	setOpacity: function(obj, value) {
 		if (obj.style['-ms-filter'])
 			obj.style['-ms-filter'] = "progid:DXImageTransform.Microsoft.Alpha(Opacity=" + (value * 100) + ")";
